@@ -1,4 +1,4 @@
-#**🥁 Drum Kit**
+# **🥁 Drum Kit**
 
 This project is a simple drum machine.
 When you press specific keys on your keyboard, a drum sound is played and the corresponding button is visually highlighted.
