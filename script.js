@@ -1,3 +1,17 @@
+const keys = document.querySelectorAll('.key');
+const visual = document.getElementById("visual");
+const images = {
+    65: "/icons/imgs/clap.png",
+    83: "/icons/imgs/hihat.png",
+    68: "/icons/imgs/kick.png",
+    70: "/icons/imgs/openhat.png",
+    71: "/icons/imgs/boom.png",
+    72: "/icons/imgs/ride.png",
+    74: "/icons/imgs/snare.png",
+    75: "/icons/imgs/tom.png",
+    76: "/icons/imgs/tink.png"
+};
+
 function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
@@ -7,6 +21,11 @@ function playSound(e) {
         console.error("Fehler beim Abspielen:", err);
     });
     key.classList.add('playing');
+
+    const imageName = images[e.keyCode];
+    if (imageName) {
+        visual.innerHTML = `<img src="${imageName}" alt="drum-image">`;
+    }
 };
 
 function removeTransition(e) {
@@ -14,6 +33,5 @@ function removeTransition(e) {
     this.classList.remove('playing');
 }
 
-const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 window.addEventListener('keydown', playSound);
